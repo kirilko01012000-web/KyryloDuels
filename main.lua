@@ -28,11 +28,6 @@ if not LP then LP = Players.PlayerAdded:Wait() end
 
 
 if _G.GreenDuelsV2_Running then return end
-
-
-
-
-
 local _isfile = isfile or (syn and syn.isfile) or (getgenv and getgenv().isfile) or function() return false end
 local _readfile = readfile or (syn and syn.readfile) or (getgenv and getgenv().readfile) or function() return nil end
 local _writefile = writefile or (syn and syn.writefile) or (getgenv and getgenv().writefile) or function() end
