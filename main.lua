@@ -5,36 +5,17 @@
 -- FIXED: Q key no longer toggles speed after exiting Lagger mode
 -- FIXED: Settings no longer reset on duel join
 -- FIXED: Config now saves reliably, no corruption, backup system
-
-
-
-
- 
-  
-
-
-
-
-
-
-local Players            = game:GetService("Players")
-
-
-
-
-
-local LP = Players.LocalPlayer
-if not LP then LP = Players.PlayerAdded:Wait() end
-
+-- ================================================
+local Players = game:GetService("Players")
+local LP = Players.LocalPlayer or Players.PlayerAdded:Wait()
 
 if _G.GreenDuelsV2_Running then return end
+_G.GreenDuelsV2_Running = true
 local _isfile = isfile or (syn and syn.isfile) or (getgenv and getgenv().isfile) or function() return false end
 local _readfile = readfile or (syn and syn.readfile) or (getgenv and getgenv().readfile) or function() return nil end
 local _writefile = writefile or (syn and syn.writefile) or (getgenv and getgenv().writefile) or function() end
 local _delfile = delfile or (syn and syn.delfile) or (getgenv and getgenv().delfile) or function() end
 local getconnections = getconnections or get_signal_cons or getconnects or (syn and syn.get_signal_cons)
-
-
 
 if not fireproximityprompt then
     fireproximityprompt = (getgenv and getgenv().fireproximityprompt)
