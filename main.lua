@@ -1,10 +1,5 @@
 -- ================================================
--- Kyrylo Duels v2 - WITH STAND DROP (Crasher) & JUMP DROP
--- Stand drop = original Cursed Hub fling (safe)
--- Jump drop = ascend then teleport
--- FIXED: Q key no longer toggles speed after exiting Lagger mode
--- FIXED: Settings no longer reset on duel join
--- FIXED: Config now saves reliably, no corruption, backup system
+-- Kyrylo Duels v2 - Direct Run (No HttpGet)
 -- ================================================
 local Players = game:GetService("Players")
 local LP = Players.LocalPlayer or Players.PlayerAdded:Wait()
@@ -28,13 +23,6 @@ if not fireproximityprompt then
     end
 end
 
--- Безпечне очікування без зависання
-if not game:IsLoaded() then
-    local success = pcall(function()
-        game.Loaded:Wait()
-    end)
-end
-
 -- ================================================
 -- AIMBOT CONSTANTS
 -- ================================================
@@ -42,7 +30,7 @@ local VYSE_HIT_DIST = 8
 local SWING_CD = 0.35
 
 -- ================================================
--- DROP TYPES (Stand = Brainrot fling, Jump = ascend)
+-- DROP TYPES
 -- ================================================
 local DROP_TYPES = {
     STAND = "Stand Drop",
@@ -51,12 +39,14 @@ local DROP_TYPES = {
 local currentDropType = DROP_TYPES.STAND
 
 -- ================================================
--- CONFIG VERSION & EARLY LOAD
+-- CONFIG
 -- ================================================
 local CONFIG_VERSION = 2
 local CONFIG_FILE = "GreenDuelsConfig.json"
 local CONFIG_BACKUP = "GreenDuelsConfig.bak"
 local earlyConfig = nil
+
+print("Kyrylo Duels v2 успішно запущено без зависань!")
 
 local earlyConfig = nil
 local function loadEarlyConfig()
