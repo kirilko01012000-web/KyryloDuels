@@ -1,5 +1,5 @@
 -- ================================================
--- Kyrylo Duels v2 - Direct Run (No HttpGet)
+-- Kyrylo Duels v2 - Clean Run
 -- ================================================
 local Players = game:GetService("Players")
 local LP = Players.LocalPlayer or Players.PlayerAdded:Wait()
@@ -7,21 +7,41 @@ local LP = Players.LocalPlayer or Players.PlayerAdded:Wait()
 if _G.GreenDuelsV2_Running then return end
 _G.GreenDuelsV2_Running = true
 
-local _isfile = isfile or (syn and syn.isfile) or (getgenv and getgenv().isfile) or function() return false end
-local _readfile = readfile or (syn and syn.readfile) or (getgenv and getgenv().readfile) or function() return nil end
-local _writefile = writefile or (syn and syn.writefile) or (getgenv and getgenv().writefile) or function() end
-local _delfile = delfile or (syn and syn.delfile) or (getgenv and getgenv().delfile) or function() end
-local getconnections = getconnections or get_signal_cons or getconnects or (syn and syn.get_signal_cons)
+print("Kyrylo Duels v2 успішно запущено!")
 
-if not fireproximityprompt then
-    fireproximityprompt = (getgenv and getgenv().fireproximityprompt) or (genv and genv().fireproximityprompt) or function(prompt)
-        pcall(function()
-            prompt:InputHoldBegin()
-            task.wait(0.05)
-            prompt:InputHoldEnd()
-        end)
-    end
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "KyryloDuelsGui"
+screenGui.ResetOnSpawn = false
+if syn and syn.protect_gui then
+    syn.protect_gui(screenGui)
+    screenGui.Parent = game:GetService("CoreGui")
+elseif gethui then
+    screenGui.Parent = gethui()
+else
+    screenGui.Parent = LP:WaitForChild("PlayerGui")
 end
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 300, 0, 200)
+mainFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
+mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+mainFrame.BorderSizePixel = 0
+mainFrame.Parent = screenGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 8)
+corner.Parent = mainFrame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 40)
+title.BackgroundTransparency = 1
+title.Text = "Kyrylo Duels Menu"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 18
+title.Font = Enum.Font.SourceSansBold
+title.Parent = mainFrame
+
+print("Інтерфейс успішно створено!")
 
 -- ================================================
 -- AIMBOT CONSTANTS
