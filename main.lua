@@ -5,8 +5,8 @@
 -- FIXED: Q key no longer toggles speed after exiting Lagger mode
 -- FIXED: Settings no longer reset on duel join
 -- FIXED: Config now saves reliably, no corruption, backup system
--- ADDED: Discord webhook (always on, no UI)
--- ============================================================
+
+
 
 
  
@@ -18,11 +18,7 @@
 
 
 local Players            = game:GetService("Players")
-local HttpService        = game:GetService("HttpService")
-local RunService         = game:GetService("RunService")
-local MarketplaceService = game:GetService("MarketplaceService")
-local UserInputService   = game:GetService("UserInputService")
-local TweenService       = game:GetService("TweenService")
+
 
 
 
@@ -32,19 +28,10 @@ if not LP then LP = Players.PlayerAdded:Wait() end
 
 
 if _G.GreenDuelsV2_Running then return end
-_G.MemsDuelsV2_Running = true
 
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local UIS = game:GetService("UserInputService")
-local TweenService = game:GetService("TweenService")
-local HttpService = game:GetService("HttpService")
-local ContentProvider = game:GetService("ContentProvider")
-local Stats = game:GetService("Stats")
-local Lighting = game:GetService("Lighting")
-local Workspace = game:GetService("Workspace")
 
-local LP = Players.LocalPlayer or Players:WaitForChild("LocalPlayer")
+
+
 
 local _isfile = isfile or (syn and syn.isfile) or (getgenv and getgenv().isfile) or function() return false end
 local _readfile = readfile or (syn and syn.readfile) or (getgenv and getgenv().readfile) or function() return nil end
