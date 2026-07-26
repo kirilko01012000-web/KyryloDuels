@@ -1,35 +1,51 @@
--- ============================================================
--- Kyrylo Duels v2 - WITH STAND DROP (Crasher) & JUMP DROP
--- Stand drop = original Cursed Hub fling (safe)
--- Jump drop = ascend then teleport
--- FIXED: Q key no longer toggles speed after exiting Lagger mode
--- FIXED: Settings no longer reset on duel join
--- FIXED: Config now saves reliably, no corruption, backup system
 -- ================================================
+-- Kyrylo Duels v2 - Full Stable Version
+-- ================================================
+
+-- 1. Безпечне завантаження гравця та гри
 local Players = game:GetService("Players")
 local LP = Players.LocalPlayer or Players.PlayerAdded:Wait()
 
-if _G.GreenDuelsV2_Running then return end
+if _G.GreenDuelsV2_Running then 
+    warn("Kyrylo Duels v2 вже запущено!")
+    return 
+end
 _G.GreenDuelsV2_Running = true
+
+-- 2. Очікування повного завантаження гри
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+-- 3. Константи та налаштування
+local VYSE_HIT_DIST = 8
+local SWING_CD = 0.35
+
+local DROP_TYPES = {
+    STAND = "Stand Drop",
+    JUMP = "Jump Drop"
+}
+local currentDropType = DROP_TYPES.STAND
+
+-- 4. Захищені функції середовища (Executor utilities)
 local _isfile = isfile or (syn and syn.isfile) or (getgenv and getgenv().isfile) or function() return false end
 local _readfile = readfile or (syn and syn.readfile) or (getgenv and getgenv().readfile) or function() return nil end
 local _writefile = writefile or (syn and syn.writefile) or (getgenv and getgenv().writefile) or function() end
 local _delfile = delfile or (syn and syn.delfile) or (getgenv and getgenv().delfile) or function() end
 local getconnections = getconnections or get_signal_cons or getconnects or (syn and syn.get_signal_cons)
 
+-- 5. Допоміжні функції (наприклад, для ProximityPrompt)
 if not fireproximityprompt then
-    fireproximityprompt = (getgenv and getgenv().fireproximityprompt)
-        or (genv and genv().fireproximityprompt)
-        or function(prompt)
-            pcall(function()
-                prompt:InputHoldBegin()
-                task.wait(0.05)
-                prompt:InputHoldEnd()
-            end)
-        end
+    fireproximityprompt = (getgenv and getgenv().fireproximityprompt) or (genv and genv().fireproximityprompt) or function(prompt)
+        pcall(function()
+            prompt:InputHoldBegin()
+            task.wait(0.05)
+            prompt:InputHoldEnd()
+        end)
+    end
 end
 
-repeat task.wait() until game:IsLoaded()
+print("Kyrylo Duels v2 успішно запущено!")
 -- ============================================================
 -- AIMBOT CONSTANTS
 -- ============================================================
