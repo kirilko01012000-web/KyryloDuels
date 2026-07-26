@@ -8,10 +8,9 @@
 -- ADDED: Discord webhook (always on, no UI)
 -- ============================================================
 
---[[
-  Panel Client v3 — Headless (no GUI)
-  Controlled via web panel polling only
-]]
+
+ 
+  
 
 local BASE = ""
 local KEY  = ""
